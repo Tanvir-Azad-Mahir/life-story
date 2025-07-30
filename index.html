@@ -3,21 +3,30 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Digital Library</title>
+  <title>PDF Library</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <h1>📚 Digital Library</h1>
-  </header>
+  <div class="container">
+    <header>
+      <h1>📚 PDF Library</h1>
+      <button id="toggle-mode">🌙 Dark Mode</button>
+    </header>
 
-  <section class="category-buttons">
-    <button class="cat-btn active" data-category="adventure">Adventure</button>
-    <button class="cat-btn" data-category="fictional">Fictional</button>
-    <button class="cat-btn" data-category="philosophy">Philosophy</button>
-  </section>
+    <div class="search-container">
+      <input type="text" id="search-input" placeholder="Search books..." />
+    </div>
 
-  <section id="book-list"></section>
+    <nav class="category-buttons">
+      <button class="cat-btn active" data-category="adventure">Adventure</button>
+      <button class="cat-btn" data-category="fictional">Fictional</button>
+      <button class="cat-btn" data-category="philosophy">Philosophy</button>
+    </nav>
+
+    <div id="book-list">
+      <p>Select a category to see PDFs here.</p>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>
