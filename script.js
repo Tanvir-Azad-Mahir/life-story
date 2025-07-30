@@ -1,12 +1,12 @@
 const buttons = document.querySelectorAll(".cat-btn");
 const bookList = document.getElementById("book-list");
 
-// Empty arrays for you to add your PDFs later.
+// Fixed title string syntax
 const placeholderBooks = {
   adventure: [],
   fictional: [],
   philosophy: [
-    { title: ""Man's Search for Meaning" by Viktor E. Frankl", file: "books/mans-search-for-meaning.pdf" },
+    { title: '"Man\'s Search for Meaning" by Viktor E. Frankl', file: "books/mans-search-for-meaning.pdf" },
   ],
 };
 
