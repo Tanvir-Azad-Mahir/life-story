@@ -2,34 +2,24 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>My PDF Library</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PDF Library</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
-    <h1>📚 My PDF Library</h1>
-    <p>Click any book below to read or download:</p>
+    <h1>📚 PDF Library</h1>
+    <nav>
+      <button class="cat-btn active" data-category="adventure">Adventure</button>
+      <button class="cat-btn" data-category="fictional">Fictional</button>
+      <button class="cat-btn" data-category="philosophy">Philosophy</button>
+    </nav>
 
-    <div class="book-list">
-      <div class="book">
-        <h2>📘 Life Story of Nelson Mandela</h2>
-        <a href="books/book1.pdf" target="_blank">📖 Read Online</a> |
-        <a href="books/book1.pdf" download>⬇️ Download</a>
-      </div>
-
-      <div class="book">
-        <h2>📙 Becoming - Michelle Obama</h2>
-        <a href="books/book2.pdf" target="_blank">📖 Read Online</a> |
-        <a href="books/book2.pdf" download>⬇️ Download</a>
-      </div>
-
-      <div class="book">
-        <h2>📗 The Alchemist - Paulo Coelho</h2>
-        <a href="books/book3.pdf" target="_blank">📖 Read Online</a> |
-        <a href="books/book3.pdf" download>⬇️ Download</a>
-      </div>
+    <div id="book-list">
+      <p>Select a category to see PDFs here.</p>
     </div>
   </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
