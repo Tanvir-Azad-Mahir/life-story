@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>PDF Library</title>
+  <title>📚 PDF Library</title>
   <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
 </head>
 <body>
   <div class="theme-toggle-container">
-    <button id="theme-toggle">🌙 Dark Mode</button>
+    <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
   </div>
 
   <div class="container">
@@ -16,13 +17,13 @@
       <h1>📚 PDF Library</h1>
     </header>
 
-    <nav class="category-nav">
-      <button class="cat-btn active" data-category="adventure">Adventure</button>
-      <button class="cat-btn" data-category="fictional">Fictional</button>
-      <button class="cat-btn" data-category="philosophy">Philosophy</button>
+    <nav class="category-nav" role="tablist" aria-label="Book categories">
+      <button class="cat-btn active" data-category="adventure" role="tab" aria-selected="true" tabindex="0">Adventure</button>
+      <button class="cat-btn" data-category="fictional" role="tab" aria-selected="false" tabindex="-1">Fictional</button>
+      <button class="cat-btn" data-category="philosophy" role="tab" aria-selected="false" tabindex="-1">Philosophy</button>
     </nav>
 
-    <main id="book-list">
+    <main id="book-list" tabindex="0" aria-live="polite">
       <p>Select a category to see PDFs here.</p>
     </main>
   </div>
