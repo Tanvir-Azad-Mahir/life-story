@@ -2,30 +2,26 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>PDF Library</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
     <header>
       <h1>📚 PDF Library</h1>
-      <button id="toggle-mode">🌙 Dark Mode</button>
+      <button id="theme-toggle">🌙 Dark Mode</button>
     </header>
 
-    <div class="search-container">
-      <input type="text" id="search-input" placeholder="Search books..." />
-    </div>
-
-    <nav class="category-buttons">
+    <nav class="category-nav">
       <button class="cat-btn active" data-category="adventure">Adventure</button>
       <button class="cat-btn" data-category="fictional">Fictional</button>
       <button class="cat-btn" data-category="philosophy">Philosophy</button>
     </nav>
 
-    <div id="book-list">
+    <main id="book-list">
       <p>Select a category to see PDFs here.</p>
-    </div>
+    </main>
   </div>
 
   <script src="script.js"></script>
