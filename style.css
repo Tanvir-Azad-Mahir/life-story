@@ -1,65 +1,226 @@
-const buttons = document.querySelectorAll(".cat-btn");
-const bookList = document.getElementById("book-list");
-const toggleBtn = document.getElementById("darkModeToggle");
+/* Reset & Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
 
-// Book data with categories
-const placeholderBooks = {
-  adventure: [],
-  fictional: [],
-  philosophy: [
-    {
-      title: "Man's Search for Meaning by Viktor E. Frankl",
-      file: "books/mans-search-for-meaning.pdf",
-    },
-  ],
-};
+:root {
+  --bg-color: #fefefe;
+  --text-color: #222;
+  --primary-color: #4a90e2;
+  --primary-hover: #357ABD;
+  --card-bg: #fff;
+  --shadow-light: rgba(0, 0, 0, 0.1);
+  --shadow-strong: rgba(0, 0, 0, 0.2);
+  --button-radius: 50px;
+  --transition-speed: 0.3s;
+}
 
-// Renders books based on selected category
-function renderBooks(category) {
-  const books = placeholderBooks[category];
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  min-height: 100vh;
+  transition: background-color var(--transition-speed), color var(--transition-speed);
+  padding: 40px 20px;
+}
 
-  if (books.length === 0) {
-    bookList.innerHTML = `<p>No books uploaded yet in <strong>${capitalize(category)}</strong> category.</p>`;
-    return;
+/* Dark Mode */
+body.dark {
+  --bg-color: #121212;
+  --text-color: #ddd;
+  --primary-color: #6c9eff;
+  --primary-hover: #82aaff;
+  --card-bg: #1e1e1e;
+  --shadow-light: rgba(255, 255, 255, 0.07);
+  --shadow-strong: rgba(255, 255, 255, 0.15);
+}
+
+/* Container */
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  background-color: var(--card-bg);
+  border-radius: 16px;
+  padding: 30px 40px;
+  box-shadow: 0 10px 30px var(--shadow-light);
+  transition: background-color var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+/* Header */
+header h1 {
+  font-weight: 600;
+  font-size: 2.8rem;
+  text-align: center;
+  margin-bottom: 40px;
+  color: var(--text-color);
+  user-select: none;
+}
+
+/* Theme Toggle Button */
+.theme-toggle-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+#theme-toggle {
+  background-color: var(--primary-color);
+  border: none;
+  padding: 12px 18px;
+  border-radius: var(--button-radius);
+  cursor: pointer;
+  font-size: 1.4rem;
+  color: white;
+  box-shadow: 0 6px 15px var(--shadow-strong);
+  transition: background-color var(--transition-speed), transform 0.2s ease, box-shadow var(--transition-speed);
+  user-select: none;
+}
+
+#theme-toggle:hover {
+  background-color: var(--primary-hover);
+  transform: scale(1.1);
+  box-shadow: 0 8px 25px var(--shadow-strong);
+}
+
+/* Category Navigation */
+.category-nav {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 50px;
+  flex-wrap: wrap;
+}
+
+.cat-btn {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 14px 32px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: var(--button-radius);
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 6px 15px var(--shadow-light);
+  transition:
+    background-color var(--transition-speed),
+    box-shadow var(--transition-speed),
+    transform 0.2s ease;
+  user-select: none;
+}
+
+.cat-btn:hover:not(.active) {
+  background-color: var(--primary-hover);
+  box-shadow: 0 8px 25px var(--shadow-strong);
+  transform: scale(1.05);
+}
+
+.cat-btn.active {
+  background-color: var(--primary-hover);
+  box-shadow: 0 10px 30px var(--shadow-strong);
+  transform: scale(1.1);
+  cursor: default;
+  pointer-events: none;
+}
+
+/* Book List */
+#book-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  outline: none;
+  min-height: 150px;
+  animation: fadeIn 0.4s ease forwards;
+  opacity: 0;
+}
+
+.book-item {
+  background-color: var(--card-bg);
+  padding: 22px 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 20px var(--shadow-light);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+  cursor: default;
+  user-select: text;
+}
+
+.book-item:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 45px var(--shadow-strong);
+}
+
+.book-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--text-color);
+  user-select: text;
+}
+
+.book-links {
+  display: flex;
+  gap: 25px;
+}
+
+.book-links a {
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: var(--primary-color);
+  transition: color var(--transition-speed);
+  user-select: none;
+}
+
+.book-links a:hover {
+  color: var(--primary-hover);
+  text-decoration: underline;
+}
+
+/* Loading text */
+#book-list p {
+  font-style: italic;
+  text-align: center;
+  font-size: 1.25rem;
+  color: var(--text-color);
+  user-select: none;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .container {
+    padding: 25px 20px;
   }
 
-  bookList.innerHTML = "";
-  books.forEach((book) => {
-    const bookDiv = document.createElement("div");
-    bookDiv.className = "book-item";
+  .cat-btn {
+    padding: 12px 22px;
+    font-size: 1rem;
+  }
 
-    bookDiv.innerHTML = `
-      <div class="book-title">${book.title}</div>
-      <div class="book-links">
-        <a href="${book.file}" target="_blank" rel="noopener">📖 Read</a>
-        <a href="${book.file}" download>⬇️ Download</a>
-      </div>
-    `;
+  .book-item {
+    padding: 18px 20px;
+  }
 
-    bookList.appendChild(bookDiv);
-  });
+  .book-title {
+    font-size: 1.2rem;
+  }
+
+  .book-links a {
+    font-size: 1rem;
+  }
 }
-
-// Capitalizes category names
-function capitalize(str) {
-  return str.charAt(0).toUpperCase() + str.slice(1);
-}
-
-// Switch theme mode
-toggleBtn.addEventListener("click", () => {
-  document.body.classList.toggle("dark-mode");
-  toggleBtn.textContent =
-    document.body.classList.contains("dark-mode") ? "🌞 Light Mode" : "🌙 Dark Mode";
-});
-
-// Initial load
-renderBooks("adventure");
-
-// Category switching
-buttons.forEach((btn) =>
-  btn.addEventListener("click", () => {
-    buttons.forEach((b) => b.classList.remove("active"));
-    btn.classList.add("active");
-    renderBooks(btn.dataset.category);
-  })
-);
