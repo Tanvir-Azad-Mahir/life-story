@@ -2,23 +2,22 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>PDF Library</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Digital Library</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <h1>📚 PDF Library</h1>
-    <nav class="category-nav">
-      <button class="cat-btn active" data-category="adventure">Adventure</button>
-      <button class="cat-btn" data-category="fictional">Fictional</button>
-      <button class="cat-btn" data-category="philosophy">Philosophy</button>
-    </nav>
+  <header>
+    <h1>📚 Digital Library</h1>
+  </header>
 
-    <div id="book-list">
-      <p>Select a category to see PDFs here.</p>
-    </div>
-  </div>
+  <section class="category-buttons">
+    <button class="cat-btn active" data-category="adventure">Adventure</button>
+    <button class="cat-btn" data-category="fictional">Fictional</button>
+    <button class="cat-btn" data-category="philosophy">Philosophy</button>
+  </section>
+
+  <section id="book-list"></section>
 
   <script src="script.js"></script>
 </body>
